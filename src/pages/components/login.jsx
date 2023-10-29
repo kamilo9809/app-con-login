@@ -6,7 +6,7 @@ function Login (){
     const {validacion, setValidacion} = useState()
 
     return(
-        <div className="bg">
+        <div className="flex justify-center flex-col items-center h-screen">
           <div>
             <label htmlFor="">usuario</label>
             <input type="text" name="name" id="name" placeholder="usuario" />

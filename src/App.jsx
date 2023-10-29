@@ -5,10 +5,10 @@ import './global.css'
 function App() {
 
   return (
-    <>
+    <div  className='container bg-blue-200 h-screen overflow-hidden min-w-full'>
     <Login />
     <MainSuperAdmin />
-    </>
+    </div>
   )
 }
 
