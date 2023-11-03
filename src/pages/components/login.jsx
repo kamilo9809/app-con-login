@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Login.css';
 
 function Login (){
@@ -28,7 +28,7 @@ function Login (){
             alert('Por favor, rellene ambos campos.');
         } else {
             // Redirige a la página 'hola'
-            window.location.href = '/hola';
+            window.location.href = '../mainSuperAdmin.jsx';
         }
     }
 
