@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import NavbarSA from './navbar';
 
 const PreguntaForm = () => {
   const [pregunta, setPregunta] = useState('');
@@ -13,6 +14,7 @@ const PreguntaForm = () => {
 
   return (
     <div>
+      <NavbarSA/>
       <h2>Crear una pregunta</h2>
       <form onSubmit={handleSubmit}>
         <div>

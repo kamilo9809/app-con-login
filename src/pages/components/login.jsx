@@ -28,7 +28,7 @@ function Login (){
             alert('Por favor, rellene ambos campos.');
         } else {
             // Redirige a la página 'hola'
-            window.location.href = '../mainSuperAdmin.jsx';
+            window.location.href = '/main';
         }
     }
 
