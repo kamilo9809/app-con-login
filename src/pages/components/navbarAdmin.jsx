@@ -8,7 +8,7 @@ const NavbarAdmin = () => {
       <header className="bg-blue-800 p-5">
         <div className="menu flex space-x-4 text-white">
           <div className="mt-2">
-            <Link id="inicio" to={"/inicio"} className="hover:underline">
+            <Link id="inicio" to={"/inicioAdmin"} className="hover:underline">
               Inicio
             </Link>
           </div>

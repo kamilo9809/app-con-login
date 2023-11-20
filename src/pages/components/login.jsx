@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './Login.css';
 
 function Login (){
@@ -23,13 +24,33 @@ function Login (){
         }
     }
 
-    const handleLoginClick = () => {
-        if (username === '' || password === '') {
-            alert('Por favor, rellene ambos campos.');
-        } else {
-            // Redirige a la página 'hola'
-            window.location.href = '/main';
+    const handleLoginClick = async () => {
+      if (username === '' || password === '') {
+        alert('Por favor, rellene ambos campos.');
+      } else {
+        try {
+          const responseadmin = await axios.post('http://localhost:3001/api/loginadmin', {
+            username: username,
+            password: password,
+          });
+          if (responseadmin.data.success) {
+            // Redirige a diferentes rutas dependiendo del rol
+            if (responseadmin.data.rol === 'superadmin') {
+              window.location.href = '/main';
+            } else if(responseadmin.data.rol=== 'admin') {
+              window.location.href = '/mainAdmin';
+            }else{
+              window.location.href = '/mainStudent';
+            }
+          } else {
+            alert(responseadmin.data.message);
+          }
+
+        } catch (error) {
+          console.error('Error durante la autenticación:', error);
+          alert("quien eres y porque estas intentando ingresar estoy llamando al 911 ya tengo localizada tu ip desgraciado")
         }
+      }
     }
 
     return(
