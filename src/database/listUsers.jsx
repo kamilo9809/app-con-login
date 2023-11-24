@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const YourComponent = () => {
+const ListUsers = () => {
   const [data, setData] = useState([]);
 
   const fetchDataFromBackend = async () => {
@@ -21,14 +21,16 @@ const YourComponent = () => {
 
   return (
     <div>
-      <h1>usuarios admin</h1>
-      <ul>
-        {data.map((item) => (
-          <li key={item.id}>{item.nombre_de_usuario}</li>
-        ))}
-      </ul>jdjdlajfa
-    </div>
-  );
+    <h1>Usuarios activos</h1>
+    <ul>
+      {data.map((item) => (
+        <li key={item.id}>
+          Nombre de Usuario: {item.nombre_de_usuario}, Rol: {item.rol}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 };
 
-export default YourComponent;
+export default ListUsers;

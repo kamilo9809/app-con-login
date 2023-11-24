@@ -1,12 +1,15 @@
 import NavbarSA from "./navbar"
-import YourComponent from "../../database/server"
-
+import ListUsers from "../../database/listUsers"
+import CreateUsers from "../../database/CreateUsers"
 const Usuarios = () => {
+  const username = localStorage.getItem('username')
+
   return (
     <div>
-        <NavbarSA/>
-        <h2>aca va la info de usuario</h2> 
-        <YourComponent/>
+        <NavbarSA Username={username} />
+        <h2>aca va la va la info de usuario para informar al superadmin</h2>
+        <CreateUsers/>
+        <ListUsers/>
     </div>
   )
 }

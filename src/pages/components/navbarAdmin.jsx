@@ -21,6 +21,9 @@ const NavbarAdmin = () => {
             <Link to={"/"} className="hover:underline">
               Cerrar Sesion
             </Link>
+            <div className="flex justify-end">
+              <h2>nombre_de_usuario</h2>
+            </div>
           </div>
         </div>
       </header>
