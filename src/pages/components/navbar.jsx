@@ -1,35 +1,34 @@
 import { Link } from "react-router-dom";
-import { PropTypes } from 'prop-types'
-
+import { PropTypes } from 'prop-types';
 
 const NavbarSA = ({ Username }) => {
 
-  const handleLogOut = ()=>{
-    //borra los datos del local storage cuando se cierra sesion
-    localStorage.clear()
-  }
+  const handleLogOut = () => {
+    // Borra los datos del local storage cuando se cierra sesión
+    localStorage.clear();
+  };
 
   return (
     <div className="app">
       <header className="bg-blue-800 p-5 flex flex-row">
         <div className="menu flex space-x-4 text-white w-1/2">
           <div className="mt-2">
-            <Link id="inicio" to={"/inicio"} className="hover:underline">
+            <Link to={"/inicio"} className="hover:underline bg-white text-blue-800 rounded-full px-4 py-2">
               Inicio
             </Link>
           </div>
           <div className="mt-2">
-            <Link id="usuarios" to={"/usuarios"} className="hover:underline">
+            <Link to={"/usuarios"} className="hover:underline bg-white text-blue-800 rounded-full px-4 py-2">
               Usuarios
             </Link>
           </div>
           <div className="mt-2">
-            <Link id="form" to={"/PreguntaForm"} className="hover:underline">
-              formulario
+            <Link to={"/PreguntaForm"} className="hover:underline bg-white text-blue-800 rounded-full px-4 py-2">
+              Formulario
             </Link>
           </div>
           <div className="mt-2">
-            <Link to={"/"} onClick={handleLogOut} className="hover:underline">
+            <Link to={"/"} onClick={handleLogOut} className="hover:underline bg-white text-blue-800 rounded-full px-4 py-2">
               Cerrar Sesión
             </Link>
           </div>
@@ -42,8 +41,8 @@ const NavbarSA = ({ Username }) => {
   );
 };
 
-NavbarSA.propTypes={
-  Username:PropTypes.string
-}
+NavbarSA.propTypes = {
+  Username: PropTypes.string
+};
 
 export default NavbarSA;

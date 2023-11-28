@@ -13,82 +13,94 @@ const PreguntaForm = () => {
     const data = {
       Texto_Pregunta: pregunta,
       tipo_pregunta: tipoPregunta
-    }
+    };
 
     try {
-      //solicitud post
       const response = await axios.post('http://localhost:3001/api/preguntas', data);
 
-      //verificamos si esta madre funciona
       if (response.statusCode === 200) {
-        console.log('pregunta enviada con exito');        
-      }else{
+        console.log('pregunta enviada con éxito');
+      } else {
         console.error('error al enviar la pregunta');
       }
-    } catch (error){
-        console.error('error al realizar la solicitud', error);
-      }
-    
+    } catch (error) {
+      console.error('error al realizar la solicitud', error);
+    }
 
     console.log('Pregunta:', pregunta);
     console.log('Tipo de pregunta:', tipoPregunta);
     if (tipoPregunta === 'cerrada') {
       console.log('Opciones de respuesta:', opcionesRespuesta);
     }
-  }
+  };
 
-  const username = localStorage.getItem('username')
+  const username = localStorage.getItem('username');
 
   return (
-    <div>
-      <NavbarSA Username={username}/>
-      <h2>Crear una pregunta</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="pregunta">Pregunta:</label>
-          <input
-            type="text"
-            id="pregunta"
-            value={pregunta}
-            onChange={(e) => setPregunta(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Tipo de pregunta:</label>
-          <select
-            value={tipoPregunta}
-            onChange={(e) => {
-              setTipoPregunta(e.target.value);
-              // Reinicia las opciones de respuesta cuando se cambia el tipo de pregunta
-              setOpcionesRespuesta(['', '', '', '']);
-            }}
-          >
-            <option value="abierta">Abierta</option>
-            <option value="cerrada">Cerrada</option>
-          </select>
-        </div>
-        {tipoPregunta === 'cerrada' && (
-          <div>
-            <label>Opciones de respuesta:</label>
-            {opcionesRespuesta.map((opcion, index) => (
-              <input
-                key={index}
-                type="text"
-                value={opcion}
-                placeholder={`Opción ${index + 1}`}
-                onChange={(e) => {
-                  const nuevasOpciones = [...opcionesRespuesta];
-                  nuevasOpciones[index] = e.target.value;
-                  setOpcionesRespuesta(nuevasOpciones);
-                }}
-              />
-            ))}
+    <div className="flex flex-col h-screen">
+      <NavbarSA Username={username} />
+      <div className="flex items-center justify-center flex-grow">
+        <div className="w-1/2 text-center">
+          <h2 className="text-3xl font-bold mb-4">Crear una pregunta</h2>
+          <form onSubmit={handleSubmit} className="mb-8">
+          <div className="mb-4">
+            <label htmlFor="pregunta" className="block text-gray-700 text-sm font-bold mb-2">
+              Pregunta:
+            </label>
+            <input
+              type="text"
+              id="pregunta"
+              value={pregunta}
+              onChange={(e) => setPregunta(e.target.value)}
+              className="w-full px-3 py-2 border rounded bg-blue-800 text-white"
+              placeholder="Escribe tu pregunta aquí..."
+            />
           </div>
-        )}
-        <button type="submit">Crear Pregunta</button>
-      </form>
+          <div className="mb-4">
+            <label htmlFor="tipoPregunta" className="block text-gray-700 text-sm font-bold mb-2">
+              Tipo de pregunta:
+            </label>
+            <select
+              id="tipoPregunta"
+              value={tipoPregunta}
+              onChange={(e) => {
+                setTipoPregunta(e.target.value);
+                setOpcionesRespuesta(['', '', '', '']);
+              }}
+              className="w-full px-3 py-2 border rounded bg-blue-800 text-white"
+            >
+              <option value="abierta">Abierta</option>
+              <option value="cerrada">Cerrada</option>
+            </select>
+          </div>
+          {tipoPregunta === 'cerrada' && (
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">Opciones de respuesta:</label>
+              {opcionesRespuesta.map((opcion, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  value={opcion}
+                  placeholder={`Opción ${index + 1}`}
+                  onChange={(e) => {
+                    const nuevasOpciones = [...opcionesRespuesta];
+                    nuevasOpciones[index] = e.target.value;
+                    setOpcionesRespuesta(nuevasOpciones);
+                  }}
+                  className="w-full px-3 py-2 border rounded bg-blue-800 text-white mb-2"
+                />
+              ))}
+            </div>
+          )}
+          <button type="submit" className="bg-blue-800 text-white px-4 py-2 rounded-full hover:bg-blue-700">
+            Crear Pregunta
+          </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
+
 
 export default PreguntaForm;

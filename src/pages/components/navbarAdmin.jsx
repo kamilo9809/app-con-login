@@ -1,34 +1,42 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { PropTypes } from 'prop-types';
 
-Link
+const NavbarAdmin = ({ Username }) => {
+  const handleLogOut = () => {
+    // Borra los datos del local storage cuando se cierra sesión
+    localStorage.clear();
+  };
 
-const NavbarAdmin = () => {
   return (
     <div className="app">
-      <header className="bg-blue-800 p-5">
-        <div className="menu flex space-x-4 text-white">
+      <header className="bg-blue-800 p-5 flex flex-row">
+        <div className="menu flex space-x-4 text-white w-1/2">
           <div className="mt-2">
-            <Link id="inicio" to={"/inicioAdmin"} className="hover:underline">
+            <Link to={"/inicioAdmin"} className="hover:underline bg-white text-blue-800 rounded-full px-4 py-2">
               Inicio
             </Link>
           </div>
           <div className="mt-2">
-            <Link id="form" to={"/PreguntaForm"} className="hover:underline">
-              formulario
+            <Link to={"/PreguntaForm"} className="hover:underline bg-white text-blue-800 rounded-full px-4 py-2">
+              Formulario
             </Link>
           </div>
           <div className="mt-2">
-            <Link to={"/"} className="hover:underline">
-              Cerrar Sesion
+            <Link to={"/"} onClick={handleLogOut} className="hover:underline bg-white text-blue-800 rounded-full px-4 py-2">
+              Cerrar Sesión
             </Link>
-            <div className="flex justify-end">
-              <h2>nombre_de_usuario</h2>
-            </div>
           </div>
+        </div>
+        <div className="flex justify-end w-1/2 text-gray-50">
+          <h2>{Username}</h2>
         </div>
       </header>
     </div>
-  )
-}
+  );
+};
 
-export default NavbarAdmin
+NavbarAdmin.propTypes = {
+  Username: PropTypes.string
+};
+
+export default NavbarAdmin;
